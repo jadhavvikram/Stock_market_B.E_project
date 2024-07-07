@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Options</title>
+</head>
+
+<body>
+
+    {% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label for="search3">Choose the Index: </label>
+        <input list="options" name="search3" id="search3">
+        <datalist id="options">
+            <option>NIFTY</option>
+            <option>FINNIFTY</option>
+            <option>BANKNIFTY</option>
+            <option>MIDCPNIFTY</option>
+        </datalist>
+    </form>
+    <a href="https://www.nseindia.com/option-chain" target="_blank">Click hear to get equity related option chains</a>
+    {% if error %}
+    <h3>{{error}}</h3>
+    {% elif data %}
+       <h5>Options displayed as PE/CE</h5>
+    <table border="1"
+        style="font-family: Arial, sans-serif; width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+        <tr>
+        {% for key in data.options.0 %}     
+            
+                <th>
+                    {{key}}
+                </th>
+              
+        {% endfor %}
+    </tr>
+        {% for item in data.options %}
+            <tr>
+                {% for key, value in item.items %}
+                    <td>{{value}}</td>
+                {% endfor %}
+            </tr>
+       {% endfor %}
+    </table>
+
+
+    {% endif %}
+    {% endblock %}
+</body>
+
+</html>

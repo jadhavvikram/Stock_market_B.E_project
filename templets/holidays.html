@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fundamentals</title>
+</head>
+<body>
+
+{% block content %}
+    {% if error %}
+        <h3>error while fatching data: {{error}}</h3>
+    {% elif data %}
+    <h3>Trading Holidays</h3>
+    <table border="1" style="font-family: Arial, sans-serif; width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+        <thead>
+            <tr>
+                <th style="background-color: #f2f2f2; padding: 10px; width: 10%;">Sr No</th>
+                <th style="background-color: #f2f2f2; padding: 10px; width: 25%;">Trading Date</th>
+                <th style="background-color: #f2f2f2; padding: 10px; width: 25%;">Weekday</th>
+                <th style="background-color: #f2f2f2; padding: 10px; width: 30%;">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data.CBM %}
+                <tr>
+                    <td style="padding: 10px;">{{ item.Sr_no }}</td>
+                    <td style="padding: 10px;">{{ item.tradingDate }}</td>
+                    <td style="padding: 10px;">{{ item.weekDay }}</td>
+                    <td style="padding: 10px;">{{ item.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif%}
+{% endblock %}
+</body>
+</html>

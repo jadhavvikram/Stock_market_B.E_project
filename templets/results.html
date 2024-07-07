@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>Welocme to DataColl</title>
+<body>
+{% block content %}
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="text" name="search" id="search" placeholder="Enter Company Name or Symbol">
+</form>
+
+    {% if error %}
+    <h3>error while fatching data: {{error}}</h3>
+    {% elif data %}
+        <h4>Qurarterly Financials: {{name}}</h4>
+        {{data|safe}}
+    {% endif %}
+
+
+{% endblock %}
+
+</body>
+
+</html>

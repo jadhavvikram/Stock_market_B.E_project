@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fundamentals</title>
+</head>
+<body>
+
+{% block content %}
+<h3>Issued IPOs</h3>
+{% if ipoData %}
+<table border="1" style="font-family: Arial, sans-serif; width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+    <thead>
+        <tr>
+            <th style="background-color: #f2f2f2; padding: 10px; width: 10%;">Symbol</th>
+            <th style="background-color: #f2f2f2; padding: 10px; width: 25%;">Company Name</th>
+            <th style="background-color: #f2f2f2; padding: 10px; width: 10%;">Issue Start Date</th>
+            <th style="background-color: #f2f2f2; padding: 10px; width: 10%;">Issue End Date</th>
+            <th style="background-color: #f2f2f2; padding: 10px; width: 10%;">Status</th>
+            <th style="background-color: #f2f2f2; padding: 10px; width: 10%;">Issue Size</th>
+            <th style="background-color: #f2f2f2; padding: 10px; width: 10%;">Issue Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in ipoData %}
+            <tr>
+                <td style="padding: 10px;">{{ item.symbol }}</td>
+                <td style="padding: 10px;">{{ item.companyName }}</td>
+                <td style="padding: 10px;">{{ item.issueStartDate }}</td>
+                <td style="padding: 10px;">{{ item.issueEndDate }}</td>
+                <td style="padding: 10px;">{{ item.status }}</td>
+                <td style="padding: 10px;">{{ item.issueSize }}</td>
+                <td style="padding: 10px;">{{ item.issuePrice }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <p>No IPO data available.</p>
+{% endif %}
+{% endblock %}
+</body>
+</html>

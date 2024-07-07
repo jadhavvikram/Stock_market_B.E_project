@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fundamentals</title>
+</head>
+
+<body>
+
+    {% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" name="search2" id="search2" placeholder="Enter Company Name or Symbol">
+    </form>
+    {% if error %}
+    <h3>{{error}}</h3>
+    {% elif api %}
+        <table border="1" style="font-family: Arial, sans-serif; width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+            <tr>
+                <th>Attribute</th>
+                <th>Value</th>
+            </tr>
+            {% for key, value in api.items %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>{{ value }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    <script>
+        $("#search2").autocomplete({
+            source: function (request, response) {
+                $.getJSON("/static/stock_names.json", function (data) {
+                    var term = request.term.toLowerCase();
+                    var filteredResults = $.grep(data, function (item) {
+                        return item.toLowerCase().includes(term);
+                    });
+
+                    response(filteredResults);
+                });
+            },
+            minLength: 3
+        });
+
+    </script>
+    {% endblock %}
+</body>
+
+</html>

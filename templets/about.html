@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us</title>
+</head>
+<body>
+
+{% block content %}
+ {% if results %}
+    <li>{{results}}</li>
+ {% endif %}
+<!-- <h1>this is about us page</h1> -->
+{% endblock %}
+</body>
+</html>

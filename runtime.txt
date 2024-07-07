@@ -1,0 +1,12 @@
+python -3.11.3
+
+steps to run
+
+unzip and open cmd (command prompt in windows)
+
+go to StockMarketPrediction folder where it is unzipped 
+execute below commands
+1. venv\Script\activate
+2. once you see (venv) before folder name execute:
+3. python manage.py runserver
+4. once it shows server started, go to localhost:8000
